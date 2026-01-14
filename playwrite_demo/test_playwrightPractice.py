@@ -64,20 +64,34 @@ def test_ui_Validation(playwright: Playwright):
     page = browser_context.new_page()
     page.goto("https://rahulshettyacademy.com/AutomationPractice/")
 
-    page.get_by_placeholder("Hide/Show Example").is_visible()
-    page.get_by_role("button", name="Hide").click()
-    assert page.get_by_placeholder("Hide/Show Example").is_hidden()
+    # page.get_by_placeholder("Hide/Show Example").is_visible()
+    # page.get_by_role("button", name="Hide").click()
+    # assert page.get_by_placeholder("Hide/Show Example").is_hidden()
 
-    #Alert Handling
-    page.get_by_role("button", name="Confirm").click()
-    time.sleep(10)
-    page.on("dialog", lambda dialog: dialog.accept())
-    #lambda fuction is used to create small anonymous function at runtime in single line
+    # #Alert Handling
+    # page.get_by_role("button", name="Confirm").click()
+    # time.sleep(10)
+    # page.on("dialog", lambda dialog: dialog.accept())
+    # #lambda fuction is used to create small anonymous function at runtime in single line
 
-    #Frames Handling
-    pageFrame = page.frame_locator("#courses-iframe")
-    pageFrame.get_by_role("link", name="All Access plan").click()
-    expect(pageFrame.locator(".text")).to_contain_text(" Happy Subscibers!")
+    # #Mouse Hovering
+    page.locator("#mousehover").hover()
+    page.get_by_role("link", name="Top").click()
+
+    
+    # #Frames Handling
+    # pageFrame = page.frame_locator("#courses-iframe")
+    # pageFrame.get_by_role("link", name="All Access plan").click()
+    # expect(pageFrame.locator("h2")).to_contain_text(" Happy Subscibers!")
+
+    # page.goto("https://rahulshettyacademy.com/seleniumPractise/#/offers")
+    # for index in range(page.locator("th").count()):
+    #     if page.locator("th").nth(index).filter(has_text="Price").count() > 0:
+    #         pricecolmvalue = index
+    #         break
+    # riceRow = page.locator("tr").filter(has_text="Rice")
+    # price = riceRow.locator("td").nth(pricecolmvalue).text_content()
+    # assert price == "37"
 
 
 
