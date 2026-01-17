@@ -9,11 +9,12 @@ orderspayload = {
 }
 
 class ApiUtils:
-    def gettoken(self, playwright: Playwright):
+    def gettoken(self, playwright: Playwright, user_credentials):
         api_req_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response = api_req_context.post(
             "/api/ecom/auth/login",
-            data=json.dumps({"userEmail": "sergioaguero@gmail.com", "userPassword": "Abcd@1234"}),
+            data=json.dumps({"userEmail": user_credentials["username"], 
+                             "userPassword": user_credentials["password"]}),
             headers={"content-type": "application/json"},
         )
         assert response.ok
@@ -21,8 +22,8 @@ class ApiUtils:
         responsebodytoken = responsebody["token"]
         return responsebodytoken
 
-    def createoder(self, playwright: Playwright):
-        token = self.gettoken(playwright)
+    def createoder(self, playwright: Playwright, user_credentials):
+        token = self.gettoken(playwright, user_credentials)
         api_req_context = playwright.request.new_context(base_url="https://rahulshettyacademy.com")
         response = api_req_context.post(
             "/api/ecom/order/create-order",
@@ -32,7 +33,3 @@ class ApiUtils:
         response_body = response.json()
         orderid = response_body.get("orders", [None])[0]
         return orderid
-    
-
-    def __init__(self):
-        pass
