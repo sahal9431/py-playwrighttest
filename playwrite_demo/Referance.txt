@@ -1,3 +1,8 @@
 Links
 https://rahulshettyacademy.com/loginpagePractise/
 https://rahulshettyacademy.com/AutomationPractice/
+https://rahulshettyacademy.com/client/#/auth/login
+
+###################################################################
+AI Agent command
+playwright codegen https://rahulshettyacademy.com/loginpagePractise/
